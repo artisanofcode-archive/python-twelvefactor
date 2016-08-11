@@ -2,7 +2,7 @@ import os
 import re
 import sys
 
-__version__ = '0.1.2'
+__version__ = '0.1.3-dev'
 
 __all__ = ('ConfigError', 'Config', 'config')
 

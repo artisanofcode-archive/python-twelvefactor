@@ -24,7 +24,7 @@ setup(
     name='twelvefactor',
     version=version,
     url='http://github.com/artisanofcode/python-twelvefactor',
-    license='BSD',
+    license='MIT',
     author='Daniel Knell',
     author_email='contact@danielknell.co.uk',
     description='Utilities for 12factor apps',
@@ -35,7 +35,7 @@ setup(
     classifiers=[
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
+        'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
