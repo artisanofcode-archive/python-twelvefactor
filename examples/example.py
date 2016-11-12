@@ -14,4 +14,4 @@ globals().update(config({
     }
 }))
 
-print(DEBUG)
+print(DEBUG)  # noqa

@@ -13,7 +13,7 @@ format:
 	pyformat --in-place $(SOURCES)
 
 lint:
-	flake8 $(SOURCES) --exclude=_compat.py
+	flake8 $(SOURCES) --exclude=_compat.py 
 
 ci: lint
 	tox -- --hypothesis-profile=$(HYPOTHESIS_PROFILE)
