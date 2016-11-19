@@ -48,7 +48,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.network "private_network", :auto_network => true
 
-  config.vm.synced_folder ".", $directory, :type => :nfs
+  config.vm.synced_folder ".", $directory
 
   config.vm.hostname = "twelvefactor.vm"
 
