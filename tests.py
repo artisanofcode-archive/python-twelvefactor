@@ -117,7 +117,7 @@ class TestConfig(object):
         assume(key not in environ)
         try:
             str(key)
-        except:
+        except Exception:
             assume(False)
 
         instance = Config(environ=environ)
