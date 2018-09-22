@@ -1,8 +1,7 @@
 import os
-import re
-import sys
+import typing
 
-__version__ = "0.1.3-dev"
+import mypy_extensions
 
 __all__ = ("ConfigError", "Config", "config")
 
@@ -10,10 +9,19 @@ __all__ = ("ConfigError", "Config", "config")
 UNSET = object()
 
 
-if sys.version_info[0] == 3:
-    text_type = str
-else:
-    text_type = unicode  # NOQA
+SchemaItem = mypy_extensions.TypedDict(
+    "SchemaItem",
+    {
+        "key": str,
+        "default": object,
+        "type": typing.Type,
+        "subtype": typing.Type,
+        "mapper": typing.Optional[typing.Callable[[object], object]],
+    },
+    total=False,
+)
+
+Schema = typing.Mapping[str, typing.Union[typing.Type, SchemaItem]]
 
 
 class ConfigError(Exception):
@@ -22,7 +30,7 @@ class ConfigError(Exception):
     """
 
 
-class Config(object):
+class Config:
     """
     Config environment parser.
 
@@ -58,12 +66,14 @@ class Config(object):
 
     TRUE_STRINGS = ("t", "true", "on", "ok", "y", "yes", "1")
 
-    TEMPLATE = re.compile(r"{{([A-Z0-9_]+)}}")
+    def __init__(
+        self, environ: typing.Optional[typing.Mapping[str, str]] = None
+    ) -> None:
+        self.environ: typing.Mapping[str, str] = (
+            environ if environ is not None else os.environ
+        )
 
-    def __init__(self, environ=None):
-        self.environ = environ if environ is not None else os.environ
-
-    def __call__(self, schema):
+    def __call__(self, schema: Schema) -> typing.Dict[str, object]:
         """
         Parse the environment according to a schema.
 
@@ -75,23 +85,25 @@ class Config(object):
         """
         result = {}
 
-        for key, kwargs in schema.items():
-            if callable(kwargs):
-                kwargs = {"type_": kwargs}
-            else:
-                kwargs = kwargs.copy()
+        for key, item in schema.items():
+            if callable(item):
+                result[key] = self.get(key=key, type_=item)
 
-            if "type" in kwargs:
-                kwargs["type_"] = kwargs.pop("type")
+                continue
 
-            if "key" not in kwargs:
-                kwargs["key"] = key
-
-            result[key] = self.get(**kwargs)
+            result[key] = self.get(
+                key=item.get("key", key),
+                default=item.get("default", UNSET),
+                type_=item.get("type", str),
+                subtype=item.get("subtype", str),
+                mapper=item.get("mapper", None),
+            )
 
         return result
 
-    def parse(self, value, type_=text_type, subtype=text_type):
+    def parse(
+        self, value: str, type_: typing.Type = str, subtype: typing.Type = str
+    ) -> typing.Any:
         """
         Parse value from string.
 
@@ -113,31 +125,36 @@ class Config(object):
         :param subtype: subtype for iterator types
         :type subtype: str
         :return: the parsed config value
-        :rtype: object
+        :rtype: typing.Any
 
         """
         if type_ is bool:
-            value = value.lower() in self.TRUE_STRINGS
-        if isinstance(type_, type) and issubclass(type_, (list, tuple, set)):
-            value = [
-                self.parse(v.strip(" "), subtype)
-                for v in value.split(",")
-                if value
-            ]
+            return type_(value.lower() in self.TRUE_STRINGS)
 
         try:
+            if isinstance(type_, type) and issubclass(
+                type_, (list, tuple, set)
+            ):
+                return type_(
+                    [
+                        self.parse(v.strip(" "), subtype)
+                        for v in value.split(",")
+                        if value
+                    ]
+                )
+
             return type_(value)
         except ValueError as e:
             raise ConfigError(*e.args)
 
     def get(
         self,
-        key,
-        default=UNSET,
-        type_=text_type,
-        subtype=text_type,
-        mapper=None,
-    ):
+        key: str,
+        default: typing.Any = UNSET,
+        type_: typing.Type = str,
+        subtype: typing.Type = str,
+        mapper: typing.Optional[typing.Callable[[object], object]] = None,
+    ) -> object:
         """
         Parse a value from an environment variable.
 
@@ -168,7 +185,7 @@ class Config(object):
         :param key: the key to look up the value under
         :type key: str
         :param default: default value to return when when no value is present
-        :type default: object
+        :type default: typing.Any
         :param type\_: the type to return or factory function
         :type type\_: type
         :param subtype: subtype for iterator types
@@ -176,7 +193,7 @@ class Config(object):
         :param mapper: a function to post-process the value with
         :type mapper: callable
         :return: the parsed config value
-        :rtype: object
+        :rtype: typing.Any
 
         """
         value = self.environ.get(key, UNSET)
@@ -187,7 +204,7 @@ class Config(object):
         if value is UNSET:
             value = default
         else:
-            value = self.parse(value, type_, subtype)
+            value = self.parse(typing.cast(str, value), type_, subtype)
 
         if mapper:
             value = mapper(value)

@@ -1,18 +1,16 @@
 import dj_database_url
-from twelvefactor import config
+import twelvefactor
 
-globals().update(
-    config(
-        {
-            "DEBUG": {"type": bool, "default": False},
-            "SECRET_KEY": str,
-            "DATABASES": {
-                "key": "DATABASE_URL",
-                "default": "sqlite:///",
-                "mapper": lambda v: {"default": dj_database_url.parse(v)},
-            },
-        }
-    )
-)
+SCHEMA: twelvefactor.Schema = {
+    "DEBUG": {"type": bool, "default": False},
+    "SECRET_KEY": str,
+    "DATABASES": {
+        "key": "DATABASE_URL",
+        "default": "sqlite:///",
+        "mapper": lambda v: {"default": dj_database_url.parse(v)},
+    },
+}
 
-print(DEBUG)  # noqa
+CONFIG = twelvefactor.config(SCHEMA)
+
+print(CONFIG["DEBUG"])

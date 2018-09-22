@@ -14,6 +14,7 @@ lint:
 	poetry run isort -m 3 -tc -fgw 0 -ca -w 79 -c $(SOURCES)
 	poetry run black --check $(SOURCES)
 	poetry run flake8 $(SOURCES)
+	poetry run mypy --ignore-missing-imports --strict $(SOURCES) 
 
 ci: test lint docs
 
