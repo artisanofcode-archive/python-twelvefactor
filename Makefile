@@ -1,24 +1,20 @@
-HYPOTHESIS_PROFILE=slow
+HYPOTHESIS_PROFILE=fast
 
 SOURCES=twelvefactor.py tests.py examples/example.py
 
 test:
-	py.test 
+	poetry run python -m pytest --hypothesis-profile=$(HYPOTHESIS_PROFILE) tests.py
 
-release:
-	python scripts/release.py
-
-format:
-	isort -rc $(SOURCES)
-	pyformat --in-place $(SOURCES)
+fmt:
+	poetry run isort -rc $(SOURCES)
+	poetry run pyformat --in-place $(SOURCES)
 
 lint:
-	flake8 $(SOURCES) --exclude=_compat.py 
+	poetry run flake8 $(SOURCES)
 
-ci: lint
-	tox -- --hypothesis-profile=$(HYPOTHESIS_PROFILE)
+ci: test lint docs
 
 docs:
-	$(MAKE) -C docs html
+	poetry run $(MAKE) -C docs html
 
 .PHONY: test release format lint ci docs
