@@ -2,7 +2,7 @@ from math import isnan
 
 import pytest
 from hypothesis import strategies as st
-from hypothesis import assume, given
+from hypothesis import assume, given, settings, HealthCheck, unlimited
 
 from twelvefactor import UNSET, Config, ConfigError, config
 
@@ -40,6 +40,9 @@ def get_kwargs():
 
 class TestConfig(object):
 
+    @settings(timeout=unlimited, suppress_health_check=[
+        HealthCheck.too_slow
+    ])
     @given(st.one_of(st.none(), st.dictionaries(st.text(), st.text())))
     def test_init(self, environ):
         if environ is None:
