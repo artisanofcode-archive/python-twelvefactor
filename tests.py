@@ -1,21 +1,12 @@
-from math import isnan
+import math
+import typing
+import unittest.mock as mock
 
+import hypothesis
+import hypothesis.strategies as st
 import pytest
-from hypothesis import (
-    HealthCheck,
-    assume,
-    given,
-    settings,
-    strategies as st,
-    unlimited,
-)
 
-from twelvefactor import UNSET, Config, ConfigError, config
-
-try:
-    from unittest.mock import Mock, call, patch
-except ImportError:
-    from mock import Mock, call, patch
+import twelvefactor
 
 TRUE_STRINGS = (
     "t",
@@ -60,14 +51,16 @@ TRUE_STRINGS = (
 TYPES = (int, str, bool, list, set, lambda x: x)
 
 
-def anything(*args):
-    stratergies = [
+def anything(
+    *args: hypothesis.searchstrategy.SearchStrategy
+) -> hypothesis.searchstrategy.SearchStrategy:
+    stratergies: typing.List[hypothesis.searchstrategy.SearchStrategy] = [
         st.none(),
         st.integers(),
         st.booleans(),
         st.text(),
         st.binary(),
-        st.floats().filter(lambda x: not isnan(x)),
+        st.floats().filter(lambda x: not math.isnan(x)),
     ]
 
     stratergies.extend(args)
@@ -75,9 +68,9 @@ def anything(*args):
     return st.one_of(*stratergies)
 
 
-def get_kwargs():
+def get_kwargs() -> hypothesis.searchstrategy.SearchStrategy[typing.Dict]:
     kwargs = {
-        "default": st.one_of(st.just(UNSET), anything()),
+        "default": st.one_of(st.just(twelvefactor.UNSET), anything()),
         "key": st.one_of(st.none(), st.text()),
         "type_": st.sampled_from(TYPES),
         "subtype": st.sampled_from(TYPES),
@@ -87,44 +80,53 @@ def get_kwargs():
 
 
 class TestConfig(object):
-    @settings(timeout=unlimited, suppress_health_check=[HealthCheck.too_slow])
-    @given(st.one_of(st.none(), st.dictionaries(st.text(), st.text())))
-    def test_init(self, environ):
+    @hypothesis.settings(  # type: ignore
+        timeout=hypothesis.unlimited,
+        suppress_health_check=[hypothesis.HealthCheck.too_slow],
+    )
+    @hypothesis.given(
+        st.one_of(st.none(), st.dictionaries(st.text(), st.text()))
+    )
+    def test_init(self, environ: typing.Dict[str, str]) -> None:
         if environ is None:
-            with patch("os.environ") as m:
-                instance = Config()
+            with mock.patch("os.environ") as m:
+                instance = twelvefactor.Config()
                 assert instance.environ == m
         else:
-            instance = Config(environ=environ)
+            instance = twelvefactor.Config(environ=environ)
             assert instance.environ == environ
 
-    @given(st.text())
-    def test_parse(self, value):
-        instance = Config(environ={})
+    @hypothesis.given(st.text())
+    def test_parse(self, value: str) -> None:
+        instance = twelvefactor.Config(environ={})
 
         assert instance.parse(value) == value
 
-    @given(st.one_of(st.text(), st.sampled_from(TRUE_STRINGS)))
-    def test_parse_boolean(self, value):
-        instance = Config(environ={})
+    @hypothesis.given(st.one_of(st.text(), st.sampled_from(TRUE_STRINGS)))
+    def test_parse_boolean(self, value: str) -> None:
+        instance = twelvefactor.Config(environ={})
 
         assert instance.parse(value, type_=bool) == (value in TRUE_STRINGS)
 
-    @given(
+    @hypothesis.given(
         st.lists(
-            st.text().filter(lambda x: x and "," not in x and " " not in x)
+            st.text().filter(
+                lambda x: bool(x and "," not in x and " " not in x)
+            )
         ),
         st.sampled_from([list, set, tuple]),
         st.integers(0, 5),
     )
-    def test_parse_list(self, value, type_, padding):
-        instance = Config(environ={})
+    def test_parse_list(
+        self, value: typing.List[str], type_: typing.Type, padding: int
+    ) -> None:
+        instance = twelvefactor.Config(environ={})
 
-        results = [Mock() for v in value]
+        results = [mock.Mock() for v in value]
 
-        calls = [call(v) for v in value]
+        calls = [mock.call(v) for v in value]
 
-        m = Mock(side_effect=results)
+        m = mock.Mock(side_effect=results)
 
         seperator = " " * padding + "," + " " * padding
 
@@ -134,28 +136,30 @@ class TestConfig(object):
 
         m.assert_has_calls(calls)
 
-    @given(
+    @hypothesis.given(
         st.lists(
             st.one_of(
                 st.text().filter(
-                    lambda x: x and "," not in x and " " not in x
+                    lambda x: bool(x and "," not in x and " " not in x)
                 ),
                 st.sampled_from(TRUE_STRINGS),
             )
         )
     )
-    def test_parse_subtypes(self, value):
-        instance = Config(environ={})
+    def test_parse_subtypes(self, value: str) -> None:
+        instance = twelvefactor.Config(environ={})
 
         result = instance.parse(",".join(value), type_=list, subtype=bool)
 
         assert result == [v in TRUE_STRINGS for v in value]
 
-    @given(st.text(), st.booleans(), st.lists(st.text()).map(tuple))
-    def test_parse_other(self, value, error, args):
-        instance = Config(environ={})
+    @hypothesis.given(st.text(), st.booleans(), st.lists(st.text()).map(tuple))
+    def test_parse_other(
+        self, value: str, error: bool, args: typing.Tuple[str, ...]
+    ) -> None:
+        instance = twelvefactor.Config(environ={})
 
-        m = Mock()
+        m = mock.Mock()
 
         if error:
             m.side_effect = ValueError(*args)
@@ -163,38 +167,52 @@ class TestConfig(object):
         if not error:
             assert instance.parse(value, type_=m) == m.return_value
         else:
-            with pytest.raises(ConfigError) as e:
+            with pytest.raises(twelvefactor.ConfigError) as e:
                 instance.parse(value, type_=m)
 
             assert e.value.args == args
 
         m.assert_called_once_with(value)
 
-    @given(
+    @hypothesis.given(
         st.dictionaries(st.text(), st.text()).filter(bool),
         st.text(),
         st.booleans(),
         get_kwargs(),
         st.booleans(),
-        st.choices(),
+        st.data(),
     )
-    def test_get(self, environ, key, error, kwargs, mapper, choice):
-        assume(key not in environ)
+    def test_get(
+        self,
+        environ: typing.Dict[str, str],
+        key: str,
+        error: bool,
+        kwargs: typing.Dict,
+        mapper: bool,
+        data: st.DataObject,
+    ) -> None:
+        hypothesis.assume(key not in environ)
         try:
             str(key)
         except Exception:
-            assume(False)
+            hypothesis.assume(False)
 
-        instance = Config(environ=environ)
-        instance.parse = Mock()
+        instance = twelvefactor.Config(environ=environ)
+        instance.parse = mock.Mock()  # type: ignore
 
-        kwargs["key"] = key if error else choice(list(environ.keys()))
+        kwargs["key"] = (
+            key
+            if error
+            else data.draw(  # type: ignore
+                st.sampled_from(list(environ.keys()))
+            )
+        )
 
         if mapper:
-            kwargs["mapper"] = Mock()
+            kwargs["mapper"] = mock.Mock()
 
-        if error and kwargs["default"] == UNSET:
-            with pytest.raises(ConfigError) as err:
+        if error and kwargs["default"] == twelvefactor.UNSET:
+            with pytest.raises(twelvefactor.ConfigError) as err:
                 instance.get(**kwargs)
 
             message = "Unknown environment variable: {0}".format(key)
@@ -204,7 +222,7 @@ class TestConfig(object):
             if error:
                 rv = kwargs["default"]
             else:
-                rv = instance.parse.return_value
+                rv = typing.cast(mock.Mock, instance.parse).return_value
 
             expected = rv if not mapper else kwargs["mapper"].return_value
 
@@ -213,23 +231,24 @@ class TestConfig(object):
             value = kwargs["default"] if error else environ[kwargs["key"]]
 
             if not error:
-                instance.parse.assert_called_once_with(
+                typing.cast(mock.Mock, instance.parse).assert_called_once_with(
                     value, kwargs["type_"], kwargs["subtype"]
                 )
 
             if mapper:
                 kwargs["mapper"].assert_called_once_with(rv)
 
-    @given(st.dictionaries(st.text(), get_kwargs()), st.booleans())
-    def test_call(self, schema, type_):
-        instance = Config(environ={})
+    @hypothesis.given(st.dictionaries(st.text(), get_kwargs()))
+    def test_call(self, schema: typing.Dict) -> None:
+        instance = twelvefactor.Config(environ={})
 
         return_value = {}
-        side_effect = {}
+        side_effect: typing.Dict[str, mock.Mock] = {}
         calls = []
 
-        mock = Mock(side_effect=lambda key, **kwargs: side_effect[key])
-        instance.get = mock
+        instance.get = mock.Mock(  # type: ignore
+            side_effect=lambda key, **kwargs: side_effect[key]
+        )
 
         for key, kwargs in schema.items():
             k = kwargs["key"]
@@ -241,11 +260,18 @@ class TestConfig(object):
             call = kwargs.copy()
             call["key"] = k
 
-            if type_:
-                kwargs["type"] = kwargs.pop("type_")
+            kwargs["type"] = kwargs.pop("type_")
+
+            call.setdefault("default", twelvefactor.UNSET)
+            call.setdefault("type_", str)
+            call.setdefault("subtype", str)
+            call.setdefault("mapper", None)
+
+            print(kwargs)
+            print(mock.call)
 
             calls.append(call)
-            side_effect.setdefault(k, Mock())
+            side_effect.setdefault(k, mock.Mock())
             return_value[key] = side_effect[k]
 
         original = schema.copy()
@@ -254,24 +280,25 @@ class TestConfig(object):
         assert schema == original
 
         for kwargs in calls:
-            instance.get.assert_any_call(**kwargs)
+            typing.cast(mock.Mock, instance.get).assert_any_call(**kwargs)
 
-        assert instance.get.call_count == len(schema)
+        assert typing.cast(mock.Mock, instance.get).call_count == len(schema)
 
-    @given(st.dictionaries(st.text(), st.sampled_from(TYPES)))
-    def test_call_simple(self, schema):
-        instance = Config(environ={})
+    @hypothesis.given(st.dictionaries(st.text(), st.sampled_from(TYPES)))
+    def test_call_simple(self, schema: typing.Dict) -> None:
+        instance = twelvefactor.Config(environ={})
 
         return_value = {}
-        side_effect = {}
+        side_effect: typing.Dict[str, mock.Mock] = {}
         calls = []
 
-        mock = Mock(side_effect=lambda key, **kwargs: side_effect[key])
-        instance.get = mock
+        instance.get = mock.Mock(  # type: ignore
+            side_effect=lambda key, **kwargs: side_effect[key]
+        )
 
         for k, v in schema.items():
             calls.append({"key": k, "type_": v})
-            side_effect.setdefault(k, Mock())
+            side_effect.setdefault(k, mock.Mock())
             return_value[k] = side_effect[k]
 
         original = schema.copy()
@@ -280,10 +307,10 @@ class TestConfig(object):
         assert schema == original
 
         for kwargs in calls:
-            instance.get.assert_any_call(**kwargs)
+            typing.cast(mock.Mock, instance.get).assert_any_call(**kwargs)
 
-        assert instance.get.call_count == len(schema)
+        assert typing.cast(mock.Mock, instance.get).call_count == len(schema)
 
 
-def test_config():
-    assert isinstance(config, Config)
+def test_config() -> None:
+    assert isinstance(twelvefactor.config, twelvefactor.Config)
