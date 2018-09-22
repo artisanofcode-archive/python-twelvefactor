@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "twelvefactor"
+version = "0.2.0-alpha.0"
+description = "Utilities for 12factor apps"
+authors = [
+  "Daniel Knell <contact@danielknell.co.uk>"
+]
+license = "MIT"
+readme = "README.rst"
+homepage = "https://twelvefactor.craftedbyartisans.com/"
+repository = "https://github.com/artisanofcode/python-twelvefactor/"
+documentation = "https://twelvefactor.craftedbyartisans.com/"
+keywords = ["12factor", "config", "environment", "env", "configuration"]
+classifiers = [
+  'Environment :: Web Environment',
+  'Intended Audience :: Developers',
+  'License :: OSI Approved :: MIT License',
+  'Operating System :: OS Independent',
+  'Programming Language :: Python',
+  'Programming Language :: Python :: 3.6',
+  'Programming Language :: Python :: 3.7',
+  'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
+  'Topic :: Software Development :: Libraries :: Python Modules',
+]
+packages = [
+    { include = "twelvefactor.py" },
+]
+
+[tool.poetry.dependencies]
+python = ">= 3.6"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.8"
+hypothesis = "^3.71"
+isort = "^4.3"
+pyformat = "^0.7.0"
+flake8 = "^3.5"
+
+
+[tool.black]
+line_length=79
