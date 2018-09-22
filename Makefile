@@ -6,10 +6,13 @@ test:
 	poetry run python -m pytest --hypothesis-profile=$(HYPOTHESIS_PROFILE) tests.py
 
 fmt:
-	poetry run isort -rc $(SOURCES)
-	poetry run pyformat --in-place $(SOURCES)
+	poetry run isort -m 3 -tc -fgw 0 -ca -w 79 $(SOURCES)
+	poetry run docformatter --blank --make-summary-multi-line --pre-summary-newline -i $(SOURCES)
+	poetry run black $(SOURCES)
 
 lint:
+	poetry run isort -m 3 -tc -fgw 0 -ca -w 79 -c $(SOURCES)
+	poetry run black --check $(SOURCES)
 	poetry run flake8 $(SOURCES)
 
 ci: test lint docs
