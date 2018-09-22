@@ -1,4 +1,5 @@
-sudo: false
+dist: xenial
+sudo: required
 
 language: python
 
@@ -6,6 +7,9 @@ python:
   - "3.6"
   - "3.7"
   - "3.8-dev"
+
+allow_failures:
+  - python: "3.8-dev"
 
 cache:
   pip: true
@@ -16,6 +20,7 @@ env:
   global:
     - secure: bUxyrRLeZ0+/SH/F71526NEQQHoNuFgYijePlI89+DP3X9ZbVa0UhgOgDGrk3EhDJIJbv8xoCGhw6zbhLaHz9yn85krZn4SZPU6VjJNkHxVGwaZMXsHnHPxXEXNPNcNqpuVfFShmRFlhrHgW7RKrQpaqBClcKGwJ5LnC6Rp7cn+X5NQWX9dxJhRjVzF8w0PJHZIw1deFtYL8xvXvZZeFt/Eo6vwy/SSe/zijj86EDxyU7ppj2PUdZMCLtO0S2FYwVROk/wlWhABwb6kd91IYOutiCaBtt3+KYnfcuGSrLoMBAWRM7ljDxnFj0RzV1E/wC9eDtDZGH/bFXjH0W/eEZ9rVwfHeb60xJoX9JKkHwez+5kayaPcgzqrf3j5FbcPH6W2dTi5RO5o6wlKQBOUHugrKecwcdEUVzgzMmhSWRxtJVlkxABRHW94bq+pDeee48RU75l1KIRoI6uhOpFbmieZqg0tKaqp0/Z5OF9g9bkDt6xZI5xiTBDnqridSpZX+swh60UWShn00MWKJC3s/xq76IbApOdUPcjw1xYXE/LAGJLwS/wLaSW2ibeh1oXMYf7IqYe00PqVrg4DgrVtwpUjlVScBycLVsnID3n0IpOueo8HbZ1JjLOkJ38EOT/C2zGtZgBGrHw1KhTgjp7owpbBXjgQHJ6kmNyOTbjDtvSg=
     - secure: qZys9R9chTSEsZqYmrvdmlNQS02TxGOh2JWIqBdzhcmcLIgTFnmu+54qf/WmJD6VriiGj8ryzOGlZt0do+7l2/cNMq+UtXYmixVw+VeyQPmKiPAHVN9FEtrQpACCoOTI0xdZgaOiyR9cjJZqWUsk/cZhja90/n14p7PsPzmH1AbLfktzxiJin3f1NedvqOU+jJGsAzI5gC0KDWaRy56LyhKAcBk4XkRZ+wXtPOb9YC3mI2CIGqzdVY36w/pnyWEtNJoj4Fkj7xXC4m+aT8g1+OVhWrfrlnKy8gY8w09fS1xifzNOPXZFFZf8G3WpSC2V497ygPXYahSpZ4J9UhTs+ZPK8RBgucR48d/lBJPbSNPtCR+bOhRCDBWloHzodmLx1aBcJhogqT3xpSK4CDd7DKZjFvm3NADVjPVo/aXtii1kuyY1AuWWv/n4uOdGc+8U6eCwhnkQDV7dm+rbxNXEuTPFYhvXi6FGFb7EsJfCrjvSdnsCSXm3ljCyCkG5Mha6kMtKevxllBsISfbQpKfgDg6hmFFXxd3HhrjBRatOCQbidYvNfsXBp+18b3NvV1McBxRcbf+mVoDqnyrT0N2+XLpGsyPrd28RlO2iqWcnAEjbYbY4856pKpIh7mWFfCsCJj2KxugmxsIx35ZrXAvCnsTCVcy0sxC1HBGYXLy+kDs=
+    - HYPOTHESIS_PROFILE=slow
 
 before_install:
   - pip install poetry
