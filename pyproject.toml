@@ -6,7 +6,7 @@ authors = [
   "Daniel Knell <contact@danielknell.co.uk>"
 ]
 license = "MIT"
-readme = "README.rst"
+readme = "README.md"
 homepage = "https://twelvefactor.craftedbyartisans.com/"
 repository = "https://github.com/artisanofcode/python-twelvefactor/"
 documentation = "https://twelvefactor.craftedbyartisans.com/"
