@@ -192,10 +192,6 @@ class TestConfig(object):
         data: st.DataObject,
     ) -> None:
         hypothesis.assume(key not in environ)
-        try:
-            str(key)
-        except Exception:
-            hypothesis.assume(False)
 
         instance = twelvefactor.Config(environ=environ)
         instance.parse = mock.Mock()  # type: ignore
