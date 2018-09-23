@@ -1,4 +1,4 @@
-HYPOTHESIS_PROFILE=fast
+HYPOTHESIS_PROFILE ?= fast
 
 SOURCES=twelvefactor.py tests.py examples/example.py
 
