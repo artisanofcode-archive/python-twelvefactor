@@ -1,6 +1,6 @@
 HYPOTHESIS_PROFILE ?= fast
 
-SOURCES=twelvefactor.py tests.py examples/example.py
+SOURCES=$(shell find . -name '*.py')
 
 test:
 	poetry run python -m pytest --hypothesis-profile=$(HYPOTHESIS_PROFILE) --cov . --cov-report term-missing tests.py
