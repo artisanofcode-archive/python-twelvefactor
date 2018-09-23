@@ -3,7 +3,7 @@ HYPOTHESIS_PROFILE=fast
 SOURCES=twelvefactor.py tests.py examples/example.py
 
 test:
-	poetry run python -m pytest --hypothesis-profile=$(HYPOTHESIS_PROFILE) tests.py
+	poetry run python -m pytest --hypothesis-profile=$(HYPOTHESIS_PROFILE) --cov . --cov-report term-missing tests.py
 
 fmt:
 	poetry run isort -m 3 -tc -fgw 0 -ca -w 79 $(SOURCES)

@@ -31,6 +31,9 @@ install:
 script: 
   - make ci
 
+after_success:
+  - coveralls
+
 before_deploy:
   - poetry config http-basic.pypi $PYPI_USER $PYPI_PASS
   - poetry build -f sdist
