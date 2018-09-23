@@ -1,6 +1,6 @@
 [![Status](https://img.shields.io/travis/artisanofcode/python-twelvefactor.svg?style=flat-square)](https://travis-ci.org/artisanofcode/python-twelvefactor)
 [![PyPi](https://img.shields.io/pypi/v/twelvefactor.svg?style=flat-square)](https://pypi.python.org/pypi/twelvefactor/) 
-[![Python 3.6+](https://img.shields.io/pypi/pyversions/twelvefactor.svg?style=flat-square)](https://www.python.org/download/releases/3.6.0/) 
+[![Python 3.6+](https://img.shields.io/pypi/pyversions/twelvefactor.svg?style=flat-square)](https://www.python.org/) 
 [![MIT](https://img.shields.io/github/license/artisanofcode/python-twelvefactor.svg?style=flat-square)](http://dan.mit-license.org/)
 
 # twelvefactor
