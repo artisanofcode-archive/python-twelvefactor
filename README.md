@@ -2,6 +2,7 @@
 [![PyPi](https://img.shields.io/pypi/v/twelvefactor.svg?style=flat-square)](https://pypi.python.org/pypi/twelvefactor/) 
 [![Python 3.6+](https://img.shields.io/pypi/pyversions/twelvefactor.svg?style=flat-square)](https://www.python.org/) 
 [![MIT](https://img.shields.io/github/license/artisanofcode/python-twelvefactor.svg?style=flat-square)](http://dan.mit-license.org/)
+[![Coverage](https://img.shields.io/coveralls/github/artisanofcode/python-twelvefactor.svg)](https://coveralls.io/github/artisanofcode/python-twelvefactor)
 
 # twelvefactor
 
