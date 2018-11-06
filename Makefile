@@ -3,7 +3,7 @@ HYPOTHESIS_PROFILE ?= fast
 SOURCES=$(shell find . -name '*.py')
 
 test:
-	poetry run python -m pytest --hypothesis-profile=$(HYPOTHESIS_PROFILE) --cov . --cov-report term-missing tests.py
+	poetry run python -m pytest --hypothesis-profile=$(HYPOTHESIS_PROFILE) --cov . --cov-report html --cov-report term-missing tests
 
 fmt:
 	poetry run isort -m 3 -tc -fgw 0 -ca -w 79 $(SOURCES)

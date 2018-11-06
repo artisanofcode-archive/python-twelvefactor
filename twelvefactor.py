@@ -73,7 +73,7 @@ class Config:
             environ if environ is not None else os.environ
         )
 
-    def __call__(self, schema: Schema) -> typing.Dict[str, object]:
+    def __call__(self, schema: Schema) -> typing.Dict[str, typing.Any]:
         """
         Parse the environment according to a schema.
 
@@ -120,8 +120,8 @@ class Config:
 
         :param value: string
         :type value: str
-        :param type\_: the type to return or factory function
-        :type type\_: type
+        :param type\\_: the type to return or factory function
+        :type type\\_: type
         :param subtype: subtype for iterator types
         :type subtype: str
         :return: the parsed config value
@@ -133,14 +133,12 @@ class Config:
 
         try:
             if isinstance(type_, type) and issubclass(
-                type_, (list, tuple, set)
+                type_, (list, tuple, set, frozenset)
             ):
                 return type_(
-                    [
-                        self.parse(v.strip(" "), subtype)
-                        for v in value.split(",")
-                        if value
-                    ]
+                    self.parse(v.strip(" "), subtype)
+                    for v in value.split(",")
+                    if value.strip(" ")
                 )
 
             return type_(value)
@@ -154,7 +152,7 @@ class Config:
         type_: typing.Type = str,
         subtype: typing.Type = str,
         mapper: typing.Optional[typing.Callable[[object], object]] = None,
-    ) -> object:
+    ) -> typing.Any:
         """
         Parse a value from an environment variable.
 
@@ -186,8 +184,8 @@ class Config:
         :type key: str
         :param default: default value to return when when no value is present
         :type default: typing.Any
-        :param type\_: the type to return or factory function
-        :type type\_: type
+        :param type\\_: the type to return or factory function
+        :type type\\_: type
         :param subtype: subtype for iterator types
         :type subtype: type
         :param mapper: a function to post-process the value with
