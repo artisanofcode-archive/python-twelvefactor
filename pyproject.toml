@@ -22,9 +22,7 @@ classifiers = [
   'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
   'Topic :: Software Development :: Libraries :: Python Modules',
 ]
-packages = [
-    { include = "twelvefactor.py" },
-]
+include = ["twelvefactor.py"]
 
 [tool.poetry.dependencies]
 python = ">= 3.6"
@@ -42,6 +40,7 @@ toml = "^0.9.6"
 mypy = "^0.630.0"
 pytest-cov = "^2.6"
 coveralls = "^1.5"
+bandit = "^1.5"
 
 
 [tool.black]
