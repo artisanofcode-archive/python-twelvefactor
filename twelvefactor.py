@@ -14,14 +14,14 @@ SchemaItem = mypy_extensions.TypedDict(
     {
         "key": str,
         "default": object,
-        "type": typing.Type,
-        "subtype": typing.Type,
+        "type": typing.Type[typing.Any],
+        "subtype": typing.Type[typing.Any],
         "mapper": typing.Optional[typing.Callable[[object], object]],
     },
     total=False,
 )
 
-Schema = typing.Mapping[str, typing.Union[typing.Type, SchemaItem]]
+Schema = typing.Mapping[str, typing.Union[typing.Type[typing.Any], SchemaItem]]
 
 
 class ConfigError(Exception):
@@ -60,7 +60,6 @@ class Config:
     environment.
 
     :param environ: environment dictionary, defaults to :data:`os.environ`
-    :type environ: dict
 
     """
 
@@ -78,9 +77,7 @@ class Config:
         Parse the environment according to a schema.
 
         :param schema: the schema to parse
-        :type schema: dict
         :return: a dictionary of config values
-        :rtype: dict
 
         """
         result = {}
@@ -102,7 +99,10 @@ class Config:
         return result
 
     def parse(
-        self, value: str, type_: typing.Type = str, subtype: typing.Type = str
+        self,
+        value: str,
+        type_: typing.Type[typing.Any] = str,
+        subtype: typing.Type[typing.Any] = str,
     ) -> typing.Any:
         """
         Parse value from string.
@@ -119,13 +119,9 @@ class Config:
            <<< [1, 2, 3, 4]
 
         :param value: string
-        :type value: str
-        :param type\\_: the type to return or factory function
-        :type type\\_: type
+        :param type_: the type to return
         :param subtype: subtype for iterator types
-        :type subtype: str
         :return: the parsed config value
-        :rtype: typing.Any
 
         """
         if type_ is bool:
@@ -149,8 +145,8 @@ class Config:
         self,
         key: str,
         default: typing.Any = UNSET,
-        type_: typing.Type = str,
-        subtype: typing.Type = str,
+        type_: typing.Type[typing.Any] = str,
+        subtype: typing.Type[typing.Any] = str,
         mapper: typing.Optional[typing.Callable[[object], object]] = None,
     ) -> typing.Any:
         """
@@ -181,17 +177,11 @@ class Config:
            <<< 123450
 
         :param key: the key to look up the value under
-        :type key: str
         :param default: default value to return when when no value is present
-        :type default: typing.Any
-        :param type\\_: the type to return or factory function
-        :type type\\_: type
+        :param type_: the type to return
         :param subtype: subtype for iterator types
-        :type subtype: type
         :param mapper: a function to post-process the value with
-        :type mapper: callable
         :return: the parsed config value
-        :rtype: typing.Any
 
         """
         value = self.environ.get(key, UNSET)
