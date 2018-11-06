@@ -42,22 +42,20 @@ provided then an error will be thrown.
 type
 ~~~~
 
-A function to convert the string value to the correct type, this can be the type
-itself or a factory method to convert the value to the desired type.
+A function to convert the string value to the correct type.
 
 When :class:`list`, :class:`tuple`, or :class:`set` are provided then the value
 will be interpreted as a comma separated list and interpreted based on the
 subtype setting.
 
-If no subtype is set then :class:`str` is assumed.
+If no type is set then :class:`str` is assumed.
 
 subtype
 ~~~~~~~
 
-A function to convert the string sub-value to the correct type, like with `type`
-this can be the type itself or a factory method.
+A function to convert the string sub-value to the correct type.
 
-If no type is set then :class:`str` is assumed.
+If no subtype is set then :class:`str` is assumed.
 
 mapper
 ~~~~~~
