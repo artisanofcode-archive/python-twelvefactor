@@ -72,8 +72,8 @@ If no mapper is provided then the value is returned as is.
 Shorthand
 ---------
 
-When only a type is required you can specify a callable instead of a dictionary
-defining the config value.
+When only a type is required you can specify just the type instead of a
+dictionary defining the config value.
 
 The following two examples are identical
 

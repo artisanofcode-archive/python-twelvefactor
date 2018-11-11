@@ -9,7 +9,9 @@ Unreleased
 - Removed Python < 3.6 support
 - Added type hints
 - Changed build tool to poetry
-- Added CI config for python 3.7 and 3.8-dev
+- Added CI config for python 3.7, 3.8-dev, and nightly
+- Improved test suite
+- Added code coverage monitoring via coveralls
 
 Version 0.1.2
 -------------

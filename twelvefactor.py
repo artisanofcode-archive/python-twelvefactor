@@ -119,7 +119,7 @@ class Config:
            <<< [1, 2, 3, 4]
 
         :param value: string
-        :param type_: the type to return
+        :param type\\_: the type to return
         :param subtype: subtype for iterator types
         :return: the parsed config value
 
@@ -178,7 +178,7 @@ class Config:
 
         :param key: the key to look up the value under
         :param default: default value to return when when no value is present
-        :param type_: the type to return
+        :param type\\_: the type to return
         :param subtype: subtype for iterator types
         :param mapper: a function to post-process the value with
         :return: the parsed config value

@@ -1,8 +1,25 @@
 Installation
 ============
 
-An install can be performed with the following:
+The library can be installed via Poetry_ as follows:
 
 ::
 
-    pip install twelvefactor
+    poetry add twelvefactor
+
+
+Alternatively using Pipenv_:
+
+::
+
+    pipenv install twelvefactor
+
+Or using pip directly with:
+
+::
+
+    pip install twelvefactor 
+
+
+.. _Poetry: https://poetry.eustace.io
+.. _Pipenv: https://pipenv.readthedocs.io/
