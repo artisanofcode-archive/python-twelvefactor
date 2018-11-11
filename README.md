@@ -14,16 +14,22 @@ For more information check the [Documentation](http://twelvefactor.craftedbyarti
 
 ## Installing
 
-Install using pip
+Install using [poetry]()
+
+```shell
+poetry add twelvefactor
+```
+
+Install using pipenv
 
 ```shell
 pip install twelvefactor
 ```
 
-Install using [poetry]()
+Install using pip
 
 ```shell
-poetry add twelvefactor
+pip install twelvefactor
 ```
 
 ## Example
