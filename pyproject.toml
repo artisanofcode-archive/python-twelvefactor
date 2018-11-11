@@ -26,7 +26,7 @@ include = ["twelvefactor.py"]
 
 [tool.poetry.dependencies]
 python = ">= 3.6"
-mypy_extensions = "^0.4.1"
+mypy_extensions = ">= 0.3.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.8"
@@ -41,7 +41,7 @@ mypy = "^0.630.0"
 pytest-cov = "^2.6"
 coveralls = "^1.5"
 bandit = "^1.5"
-sphinx-autodoc-typehints = "^1.3"
+sphinx-autodoc-typehints = "^1.4"
 
 
 [tool.black]
