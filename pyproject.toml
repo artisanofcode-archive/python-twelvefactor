@@ -41,7 +41,7 @@ mypy = "^0.630.0"
 pytest-cov = "^2.6"
 coveralls = "^1.5"
 bandit = "^1.5"
-sphinx-autodoc-typehints = "^1.4"
+sphinx-autodoc-typehints = "^1.5"
 
 
 [tool.black]
