@@ -58,6 +58,4 @@ html_theme_options = {
 
 html_context = {"pypi_name": metadata["tool"]["poetry"]["name"]}
 
-intersphinx_mapping = {
-    "python": ("https://docs.python.org/dev", None),
-}
+intersphinx_mapping = {"python": ("https://docs.python.org/dev", None)}
