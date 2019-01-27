@@ -32,7 +32,7 @@ before_install:
 
 install:
   - pip install poetry
-  - poetry install
+  - poetry install -E docs
 
 script: 
   - make ci
