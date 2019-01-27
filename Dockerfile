@@ -18,6 +18,6 @@ WORKDIR /app
 COPY ./pyproject.toml /app/
 COPY ./poetry.lock /app/
 
-RUN poetry install
+RUN poetry install -E docs
 
 COPY . /app

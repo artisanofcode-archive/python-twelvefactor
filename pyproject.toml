@@ -27,13 +27,14 @@ include = ["twelvefactor.py"]
 [tool.poetry.dependencies]
 python = ">= 3.6"
 mypy_extensions = ">= 0.3.0"
+sphinx-autodoc-typehints = { version = "^1.6", optional = true }
+sphinx = { version = "^1.8", optional = true }
 
 [tool.poetry.dev-dependencies]
 pytest = "^4.1"
 hypothesis = "^4.4"
 isort = "^4.3"
 flake8 = "^3.5"
-sphinx = "^1.8"
 black = "^18.3-alpha.0"
 docformatter = "^1.0"
 toml = "^0.10.0"
@@ -41,7 +42,9 @@ mypy = "^0.660"
 pytest-cov = "^2.6"
 coveralls = "^1.5"
 bandit = "^1.5"
-sphinx-autodoc-typehints = "^1.6"
+
+[tool.poetry.extras]
+docs = ["sphinx", "sphinx-autodoc-typehints"]
 
 [tool.black]
 line_length=79
