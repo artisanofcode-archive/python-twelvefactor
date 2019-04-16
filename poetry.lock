@@ -200,7 +200,7 @@ description = "A library for property based testing"
 name = "hypothesis"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "4.16.0"
+version = "4.17.0"
 
 [package.dependencies]
 attrs = ">=16.0.0"
@@ -533,7 +533,7 @@ version = "1.22"
 docs = ["sphinx", "sphinx-autodoc-typehints", "toml"]
 
 [metadata]
-content-hash = "7c2628eac4b4bb3227292b9d6b1447eefc3f4018a9eed3b235b2ea8e08313c36"
+content-hash = "9b420b0e68eb54919b95aaa5b9f5e87cbd978f4da273f42c70bfd0a2171871b1"
 python-versions = ">= 3.6"
 
 [metadata.hashes]
@@ -557,7 +557,7 @@ entrypoints = ["589f874b313739ad35be6e0cd7efde2a4e9b6fea91edcc34e58ecbb8dbe56d19
 flake8 = ["859996073f341f2670741b51ec1e67a01da142831aa1fdc6242dbf88dffbe661", "a796a115208f5c03b18f332f7c11729812c8c3ded6c46319c59b53efd3819da8"]
 gitdb2 = ["83361131a1836661a155172932a13c08bda2db3674e4caa32368aa6eb02f38c2", "e3a0141c5f2a3f635c7209d56c496ebe1ad35da82fe4d3ec4aaa36278d70648a"]
 gitpython = ["563221e5a44369c6b79172f455584c9ebbb122a13368cc82cb4b5addff788f82", "8237dc5bfd6f1366abeee5624111b9d6879393d84745a507de0fda86043b65a8"]
-hypothesis = ["401b7731775ea869e12ada6e02736e269a1c30abae458122d130a05891178f2e", "b03f14c0be8545a9722216a61ea09ea3460df1d1aae6f2e2b967e742d4c91e6d", "b27ba950ca8edaaf42ea66ce91120f6032d3c1aa2ca0a74fe534c47d2282c73e"]
+hypothesis = ["16eb40c9293a291e889527648085a28c243858bd2ef910d56ebb48da86718b1c", "9e0e3a95e526845f11858df78112cf71c3bacac7f31320dba39a03b66d8804a2", "d5bc9eb826eaf8561d649edcd80d287373f41e74fa5eedf5c18b1de294cbd70b"]
 idna = ["c357b3f628cf53ae2c4c05627ecc484553142ca23264e593d327bcde5e9c3407", "ea8b7f6188e6fa117537c3df7da9fc686d485087abf6ac197f9c46432f7e4a3c"]
 imagesize = ["3f349de3eb99145973fefb7dbe38554414e5c30abd0c8e4b970a7c9d09f3a1d8", "f3832918bc3c66617f92e35f5d70729187676313caa60c187eb0f28b8fe5e3b5"]
 isort = ["01cb7e1ca5e6c5b3f235f0385057f70558b70d2f00320208825fa62887292f43", "268067462aed7eb2a1e237fcb287852f22077de3fb07964e87e00f829eea2d1a"]
