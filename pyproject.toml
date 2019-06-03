@@ -40,7 +40,7 @@ black = "^19.3b0"
 docformatter = "^1.1"
 mypy = "^0.701"
 pytest-cov = "^2.7"
-coveralls = "^1.7"
+coveralls = "^1.8"
 bandit = "^1.6"
 
 [tool.poetry.extras]
