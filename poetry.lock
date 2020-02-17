@@ -201,8 +201,8 @@ category = "dev"
 description = "A library for property-based testing"
 name = "hypothesis"
 optional = false
-python-versions = ">=3.5"
-version = "5.1.0"
+python-versions = ">=3.5.2"
+version = "5.5.4"
 
 [package.dependencies]
 attrs = ">=19.2.0"
@@ -618,6 +618,7 @@ version = "0.1.8"
 [[package]]
 category = "dev"
 description = "Backport of pathlib-compatible object wrapper for zip files"
+marker = "python_version < \"3.8\""
 name = "zipp"
 optional = false
 python-versions = ">=3.6"
@@ -627,7 +628,7 @@ version = "2.2.0"
 docs = ["sphinx", "sphinx-autodoc-typehints", "toml"]
 
 [metadata]
-content-hash = "a721cac9cb613239c68529a8660329048357e6c9fd741646f8cfdee477534291"
+content-hash = "7d62a09c5608ce7ea0723e5b86b4283cf8b461fb2a9c1f8728397ba489487509"
 python-versions = ">= 3.6"
 
 [metadata.hashes]
@@ -651,7 +652,7 @@ entrypoints = ["589f874b313739ad35be6e0cd7efde2a4e9b6fea91edcc34e58ecbb8dbe56d19
 flake8 = ["45681a117ecc81e870cbf1262835ae4af5e7a8b08e40b944a8a6e6b895914cfb", "49356e766643ad15072a789a20915d3c91dc89fd313ccd71802303fd67e4deca"]
 gitdb2 = ["1b6df1433567a51a4a9c1a5a0de977aa351a405cc56d7d35f3388bad1f630350", "96bbb507d765a7f51eb802554a9cfe194a174582f772e0d89f4e87288c288b7b"]
 gitpython = ["99c77677f31f255e130f3fed4c8e0eebb35f1a09df98ff965fff6774f71688cf", "99cd0403cecd8a13b95d2e045b9fcaa7837137fcc5ec3105f2c413305d82c143"]
-hypothesis = ["1b03916e72265655378c5e67f27663adb1e6175fe1ad906d58997b7a04ce99ad", "6abd5740ed05dff9efe0df18f0f7013eb4aa99c143f7177fbefb603888a990d0"]
+hypothesis = ["2e5382dea626072f12a17c10d2b3c3f13bb7cb35ba40d0978bc29b0ade589b63", "c82209a75ffb17556b2c396bbd55832f1525938809bd8bb6651a86e7b5ded154"]
 idna = ["c357b3f628cf53ae2c4c05627ecc484553142ca23264e593d327bcde5e9c3407", "ea8b7f6188e6fa117537c3df7da9fc686d485087abf6ac197f9c46432f7e4a3c"]
 imagesize = ["6965f19a6a2039c7d48bca7dba2473069ff854c36ae6f19d2cde309d998228a1", "b1f6b5a4eab1f73479a50fb79fcf729514a900c341d8503d62a62dbc4127a2b1"]
 importlib-metadata = ["06f5b3a99029c7134207dd882428a66992a9de2bef7c2b699b5641f9886c3302", "b97607a1a18a5100839aec1dc26a1ea17ee0d93b20b0f008d80a5a050afb200b"]
