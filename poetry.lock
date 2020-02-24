@@ -621,11 +621,10 @@ version = "0.1.8"
 [[package]]
 category = "dev"
 description = "Backport of pathlib-compatible object wrapper for zip files"
-marker = "python_version < \"3.8\""
 name = "zipp"
 optional = false
 python-versions = ">=3.6"
-version = "2.2.0"
+version = "3.0.0"
 
 [extras]
 docs = ["sphinx", "sphinx-autodoc-typehints", "toml"]
@@ -698,4 +697,4 @@ typing-extensions = ["091ecc894d5e908ac75209f10d5b4f118fbdb2eb1ede6a63544054bb1e
 untokenize = ["3865dbbbb8efb4bb5eaa72f1be7f3e0be00ea8b7f125c69cbd1f5fda926f37a2"]
 urllib3 = ["06330f386d6e4b195fbfc736b297f58c5a892e4440e54d294d7004e3a9bbea1b", "cc44da8e1145637334317feebd728bd869a35285b93cbb4cca2577da7e62db4f"]
 wcwidth = ["8fd29383f539be45b20bd4df0dc29c20ba48654a41e661925e612311e9f3c603", "f28b3e8a6483e5d49e7f8949ac1a78314e740333ae305b4ba5defd3e74fb37a8"]
-zipp = ["5c56e330306215cd3553342cfafc73dda2c60792384117893f3a83f8a1209f50", "d65287feb793213ffe11c0f31b81602be31448f38aeb8ffc2eb286c4f6f6657e"]
+zipp = ["12248a63bbdf7548f89cb4c7cda4681e537031eda29c02ea29674bc6854460c2", "7c0f8e91abc0dc07a5068f315c52cb30c66bfbc581e5b50704c8a2f6ebae794a"]
