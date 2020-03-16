@@ -201,8 +201,8 @@ category = "dev"
 description = "A library for property-based testing"
 name = "hypothesis"
 optional = false
-python-versions = ">=3.5"
-version = "5.1.0"
+python-versions = ">=3.5.2"
+version = "5.6.0"
 
 [package.dependencies]
 attrs = ">=19.2.0"
@@ -519,7 +519,7 @@ version = "1.0.2"
 category = "main"
 description = "sphinxcontrib-devhelp is a sphinx extension which outputs Devhelp document."
 name = "sphinxcontrib-devhelp"
-optional = false
+optional = true
 python-versions = ">=3.5"
 version = "1.0.2"
 
@@ -543,7 +543,7 @@ version = "1.0.1"
 category = "main"
 description = "sphinxcontrib-qthelp is a sphinx extension which outputs QtHelp document."
 name = "sphinxcontrib-qthelp"
-optional = false
+optional = true
 python-versions = ">=3.5"
 version = "1.0.3"
 
@@ -628,7 +628,7 @@ version = "3.1.0"
 docs = ["sphinx", "sphinx-autodoc-typehints", "toml"]
 
 [metadata]
-content-hash = "eb4453c0d45b7760e09e51dfea7dd4086a112daa5795058cf3d67ddaea58ed0c"
+content-hash = "969506bd51153ebe4fcadd950d294bce1153d923e19ba0ee187695931c7be70e"
 python-versions = ">= 3.6"
 
 [metadata.hashes]
@@ -652,7 +652,7 @@ entrypoints = ["589f874b313739ad35be6e0cd7efde2a4e9b6fea91edcc34e58ecbb8dbe56d19
 flake8 = ["45681a117ecc81e870cbf1262835ae4af5e7a8b08e40b944a8a6e6b895914cfb", "49356e766643ad15072a789a20915d3c91dc89fd313ccd71802303fd67e4deca"]
 gitdb = ["284a6a4554f954d6e737cddcff946404393e030b76a282c6640df8efd6b3da5e", "598e0096bb3175a0aab3a0b5aedaa18a9a25c6707e0eca0695ba1a0baf1b2150"]
 gitpython = ["43da89427bdf18bf07f1164c6d415750693b4d50e28fc9b68de706245147b9dd", "e426c3b587bd58c482f0b7fe6145ff4ac7ae6c82673fc656f489719abca6f4cb"]
-hypothesis = ["1b03916e72265655378c5e67f27663adb1e6175fe1ad906d58997b7a04ce99ad", "6abd5740ed05dff9efe0df18f0f7013eb4aa99c143f7177fbefb603888a990d0"]
+hypothesis = ["22fb60bd0c6eb7849121a7df263a91da23b4e8506d3ba9e92ac696d2720ac0f5", "4b4c236a2e14fca1dfc254bb38592360dfb1cbd9d3c4c410c0b7e91f37a43bf3"]
 idna = ["7588d1c14ae4c77d74036e8c22ff447b26d0fde8f007354fd48a7814db15b7cb", "a068a21ceac8a4d63dbfd964670474107f541babbd2250d61922f029858365fa"]
 imagesize = ["6965f19a6a2039c7d48bca7dba2473069ff854c36ae6f19d2cde309d998228a1", "b1f6b5a4eab1f73479a50fb79fcf729514a900c341d8503d62a62dbc4127a2b1"]
 importlib-metadata = ["06f5b3a99029c7134207dd882428a66992a9de2bef7c2b699b5641f9886c3302", "b97607a1a18a5100839aec1dc26a1ea17ee0d93b20b0f008d80a5a050afb200b"]
