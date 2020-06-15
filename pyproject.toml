@@ -39,7 +39,7 @@ flake8 = "^3.8"
 black = "^19.3b0"
 docformatter = "^1.3"
 mypy = "^0.780"
-pytest-cov = "^2.9"
+pytest-cov = "^2.10"
 coveralls = "^2.0"
 bandit = "^1.6"
 
