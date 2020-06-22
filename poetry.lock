@@ -208,17 +208,17 @@ category = "dev"
 description = "A library for property-based testing"
 name = "hypothesis"
 optional = false
-python-versions = ">=3.5"
-version = "5.1.0"
+python-versions = ">=3.5.2"
+version = "5.16.3"
 
 [package.dependencies]
 attrs = ">=19.2.0"
 sortedcontainers = ">=2.1.0,<3.0.0"
 
 [package.extras]
-all = ["django (>=1.11)", "dpcontracts (>=0.4)", "lark-parser (>=0.6.5)", "numpy (>=1.9.0)", "pandas (>=0.19)", "pytest (>=4.3)", "python-dateutil (>=1.4)", "pytz (>=2014.1)"]
+all = ["django (>=2.2)", "dpcontracts (>=0.4)", "lark-parser (>=0.6.5)", "numpy (>=1.9.0)", "pandas (>=0.19)", "pytest (>=4.3)", "python-dateutil (>=1.4)", "pytz (>=2014.1)"]
 dateutil = ["python-dateutil (>=1.4)"]
-django = ["pytz (>=2014.1)", "django (>=1.11)"]
+django = ["pytz (>=2014.1)", "django (>=2.2)"]
 dpcontracts = ["dpcontracts (>=0.4)"]
 lark = ["lark-parser (>=0.6.5)"]
 numpy = ["numpy (>=1.9.0)"]
@@ -715,7 +715,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 docs = ["sphinx", "sphinx-autodoc-typehints", "toml"]
 
 [metadata]
-content-hash = "8bf58a248ad3075e900d66c22167e9c070178c9b534a434d772d7a913363daf7"
+content-hash = "ea5990ae03148514f3315e3665ab5220d39968724fb66e3fa2b34f216822e8fb"
 python-versions = ">= 3.6"
 
 [metadata.files]
@@ -832,8 +832,8 @@ gitpython = [
     {file = "GitPython-3.1.3.tar.gz", hash = "sha256:e107af4d873daed64648b4f4beb89f89f0cfbe3ef558fc7821ed2331c2f8da1a"},
 ]
 hypothesis = [
-    {file = "hypothesis-5.1.0-py3-none-any.whl", hash = "sha256:6abd5740ed05dff9efe0df18f0f7013eb4aa99c143f7177fbefb603888a990d0"},
-    {file = "hypothesis-5.1.0.tar.gz", hash = "sha256:1b03916e72265655378c5e67f27663adb1e6175fe1ad906d58997b7a04ce99ad"},
+    {file = "hypothesis-5.16.3-py3-none-any.whl", hash = "sha256:7e8e0b7d412cb758c662dcbdcdc93cb8dccc38a9c67f2cd4bf885ba9f714f8d4"},
+    {file = "hypothesis-5.16.3.tar.gz", hash = "sha256:81f9a033900ea73c7b594173dbce7b9eb39222c04fc6278a6f33cc39c49b144a"},
 ]
 idna = [
     {file = "idna-2.9-py2.py3-none-any.whl", hash = "sha256:a068a21ceac8a4d63dbfd964670474107f541babbd2250d61922f029858365fa"},
