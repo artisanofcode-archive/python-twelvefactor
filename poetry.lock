@@ -200,26 +200,29 @@ gitdb = ">=4.0.1,<5"
 
 [[package]]
 name = "hypothesis"
-version = "5.1.0"
+version = "5.41.4"
 description = "A library for property-based testing"
 category = "dev"
 optional = false
-python-versions = ">=3.5"
+python-versions = ">=3.6"
 
 [package.dependencies]
 attrs = ">=19.2.0"
 sortedcontainers = ">=2.1.0,<3.0.0"
 
 [package.extras]
-all = ["django (>=1.11)", "dpcontracts (>=0.4)", "lark-parser (>=0.6.5)", "numpy (>=1.9.0)", "pandas (>=0.19)", "pytest (>=4.3)", "python-dateutil (>=1.4)", "pytz (>=2014.1)"]
+all = ["black (>=19.10b0)", "click (>=7.0)", "django (>=2.2)", "dpcontracts (>=0.4)", "lark-parser (>=0.6.5)", "numpy (>=1.9.0)", "pandas (>=0.25)", "pytest (>=4.3)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "importlib-metadata"]
+cli = ["click (>=7.0)", "black (>=19.10b0)"]
 dateutil = ["python-dateutil (>=1.4)"]
-django = ["pytz (>=2014.1)", "django (>=1.11)"]
+django = ["pytz (>=2014.1)", "django (>=2.2)"]
 dpcontracts = ["dpcontracts (>=0.4)"]
+ghostwriter = ["black (>=19.10b0)"]
 lark = ["lark-parser (>=0.6.5)"]
 numpy = ["numpy (>=1.9.0)"]
-pandas = ["pandas (>=0.19)"]
+pandas = ["pandas (>=0.25)"]
 pytest = ["pytest (>=4.3)"]
 pytz = ["pytz (>=2014.1)"]
+redis = ["redis (>=3.0.0)"]
 
 [[package]]
 name = "idna"
@@ -697,7 +700,7 @@ docs = ["sphinx", "sphinx-autodoc-typehints", "toml"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">= 3.6"
-content-hash = "e5317ebb7c79c164e2c866d9b79fd8110e7abce0665690c185f3a18aa80219f3"
+content-hash = "1845d493123e01f958110dae90ddca3c5ff7e50c5900ab818a5e7ff353d80841"
 
 [metadata.files]
 alabaster = [
@@ -813,8 +816,8 @@ gitpython = [
     {file = "GitPython-3.1.11.tar.gz", hash = "sha256:befa4d101f91bad1b632df4308ec64555db684c360bd7d2130b4807d49ce86b8"},
 ]
 hypothesis = [
-    {file = "hypothesis-5.1.0-py3-none-any.whl", hash = "sha256:6abd5740ed05dff9efe0df18f0f7013eb4aa99c143f7177fbefb603888a990d0"},
-    {file = "hypothesis-5.1.0.tar.gz", hash = "sha256:1b03916e72265655378c5e67f27663adb1e6175fe1ad906d58997b7a04ce99ad"},
+    {file = "hypothesis-5.41.4-py3-none-any.whl", hash = "sha256:fdc490f98d81861e218c77f222ae889c993ff9d6d579dd4c9bb7b75e2dc63852"},
+    {file = "hypothesis-5.41.4.tar.gz", hash = "sha256:7ef22dd2ae4a906ef1e237dcd6806aa7f97e30c37f924a0e6d595f4639350b53"},
 ]
 idna = [
     {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
