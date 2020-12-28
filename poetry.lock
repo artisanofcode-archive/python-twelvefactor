@@ -121,7 +121,7 @@ yaml = ["PyYAML (>=3.10)"]
 
 [[package]]
 name = "docformatter"
-version = "1.3.1"
+version = "1.4"
 description = "Formats docstrings to follow PEP 257."
 category = "dev"
 optional = false
@@ -654,7 +654,7 @@ docs = ["sphinx", "sphinx-autodoc-typehints", "toml"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">= 3.6"
-content-hash = "d698b7af4cb5798a1f6600494c878b58013e0c7db7de86b2037cc83ef4977105"
+content-hash = "24f4c5457e7e68e93d9e0e528326be4fb7d1186545286926d55d77fdebd9a52a"
 
 [metadata.files]
 alabaster = [
@@ -740,7 +740,7 @@ coveralls = [
     {file = "coveralls-2.2.0.tar.gz", hash = "sha256:b990ba1f7bc4288e63340be0433698c1efe8217f78c689d254c2540af3d38617"},
 ]
 docformatter = [
-    {file = "docformatter-1.3.1.tar.gz", hash = "sha256:d8db663665becccac75737b2635a06076f2c832bf861322a7bfc512f0a9fa7e3"},
+    {file = "docformatter-1.4.tar.gz", hash = "sha256:064e6d81f04ac96bc0d176cbaae953a0332482b22d3ad70d47c8a7f2732eef6f"},
 ]
 docopt = [
     {file = "docopt-0.6.2.tar.gz", hash = "sha256:49b3a825280bd66b3aa83585ef59c4a8c82f2c8a522dbe754a8bc8d08c85c491"},
