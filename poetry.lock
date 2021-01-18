@@ -105,7 +105,7 @@ python-versions = "*"
 
 [[package]]
 name = "coveralls"
-version = "2.2.0"
+version = "3.0.0"
 description = "Show coverage stats online via coveralls.io"
 category = "dev"
 optional = false
@@ -654,7 +654,7 @@ docs = ["sphinx", "sphinx-autodoc-typehints", "toml"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">= 3.6"
-content-hash = "24f4c5457e7e68e93d9e0e528326be4fb7d1186545286926d55d77fdebd9a52a"
+content-hash = "18fd7bf20b8fa21f9eadf5b4d75dcaf17e1d754af0e94952baa27d92a5ad5089"
 
 [metadata.files]
 alabaster = [
@@ -736,8 +736,8 @@ coverage = [
     {file = "coverage-4.4.2.win32-py3.6.exe", hash = "sha256:f98b461cb59f117887aa634a66022c0bd394278245ed51189f63a036516e32de"},
 ]
 coveralls = [
-    {file = "coveralls-2.2.0-py2.py3-none-any.whl", hash = "sha256:2301a19500b06649d2ec4f2858f9c69638d7699a4c63027c5d53daba666147cc"},
-    {file = "coveralls-2.2.0.tar.gz", hash = "sha256:b990ba1f7bc4288e63340be0433698c1efe8217f78c689d254c2540af3d38617"},
+    {file = "coveralls-3.0.0-py2.py3-none-any.whl", hash = "sha256:f8384968c57dee4b7133ae701ecdad88e85e30597d496dcba0d7fbb470dca41f"},
+    {file = "coveralls-3.0.0.tar.gz", hash = "sha256:5399c0565ab822a70a477f7031f6c88a9dd196b3de2877b3facb43b51bd13434"},
 ]
 docformatter = [
     {file = "docformatter-1.4.tar.gz", hash = "sha256:064e6d81f04ac96bc0d176cbaae953a0332482b22d3ad70d47c8a7f2732eef6f"},
